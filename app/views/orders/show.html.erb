@@ -2,12 +2,51 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
+    <h5>Email: <%= @order.email%></h5>
   </header>
+
+
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
   </div>
 
+
+
+  <div class="panel panel-default items"> 
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%  %>
+        <% LineItem.where('order_id' => @order.id).each do |a| %>
+          <%= render 'product', product_id: a.product_id, quantity: a.quantity %>
+        <% end %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= "$#{@order.total_cents.to_i/100.0}"%>
+          </th>
+        </tr>
+      </tfoot>
+
+    </table>
+  </div>
+
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+  
+
 
 </section>
