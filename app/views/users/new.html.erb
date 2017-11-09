@@ -1,13 +1,27 @@
-<h1>users->new.html.erb<h1>
-<h1>Signup!</h1>
+<section class="admin-products-new">
 
-<%= form_for :user, url: '/users' do |f| %>
+  <header class="page-header">
+    <h1>Signup</h1>
+  </header>
 
-  First Name: <%= f.text_field :firstName %>
-  Last Name: <%= f.text_field :lastName %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-1">
+  
+      <%= form_for :user, url: '/users' do |f| %>
 
-<% end %>
+        <div class="form-group">
+          <%= f.label :First_Name %>
+          <%= f.text_field :firstName, class: 'form-control' %>
+        </div>
+      
+        First Name: <%= f.text_field :firstName %>
+        Last Name: <%= f.text_field :lastName %>
+        Email: <%= f.text_field :email %>
+        Password: <%= f.password_field :password %>
+        Password Confirmation: <%= f.password_field :password_confirmation %>
+        <%= f.submit "Submit" %>
+
+      <% end %>
+    </div>
+  </div>
+</section>
