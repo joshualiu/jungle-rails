@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    send_email(@order)    
   end
+
 
   def create
     charge = perform_stripe_charge
@@ -11,6 +13,8 @@ class OrdersController < ApplicationController
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
+      # @orderdetail = order
+      send_email(order)
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
     end
@@ -66,5 +70,13 @@ class OrdersController < ApplicationController
     end
     total
   end
+
+
+  def send_email (detail)
+    @user = detail
+    UserMailer.welcome_email(@user).deliver_now     
+ 
+  end
+
 
 end
