@@ -6,8 +6,24 @@
   <body>
     <h1>Your order has been placed, thank you for shopping with Jungle! </h1>
     <p>
-      your 
-      <% %>.<br>
+
+      <% LineItem.where('order_id' => @user.id).each do |a| %>
+
+            
+            <% if product = Product.find_by(id: a.product_id) %>
+
+            <td>
+              <h4><%= product.name %></h4>
+            </td>
+            <td>
+              <%= product.price %>
+            </td>
+            <td>
+              <%= a.quantity %>
+            </td>
+            <% end %>
+
+      <% end %>
     </p>
 
     <p>Thanks for joining and have a great day!</p>
