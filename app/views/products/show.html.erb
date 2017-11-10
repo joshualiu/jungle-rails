@@ -1,4 +1,5 @@
 <section class="products-show">
+test
 
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
@@ -24,8 +25,26 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
+
     </div>
 
   </article>
+
+
+
+  <table class="table table-bordered">
+    <h3>Product Reviews</h3>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Description</th>
+          <th>Rating</th>
+        </tr>
+      </thead>     
+
+  </table>
+  <% @review.each do |a|%>
+    <%= "#{User.find(a.user_id).firstName} #{User.find(a.user_id).lastName} #{a.description} #{a.rating}" %><br>
+    <%end %>
 
 </section>
