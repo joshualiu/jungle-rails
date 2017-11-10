@@ -132,5 +132,44 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+pro1 = Product.find_by(:id => 1)
+pro2 = Product.find_by(:id => 2)
+pro3 = Product.find_by(:id => 3)
+
+pro1.reviews.create!({
+  user_id: 1,
+  description: "I like it!!!!",
+  rating: 5
+})
+
+pro2.reviews.create!({
+  user_id: 2,
+  description: "I like it so much!!!!",
+  rating: 4
+})
+
+pro3.reviews.create!({
+  user_id: 4,
+  description: "I like gbjdgijor!",
+  rating: 5
+})
+
+pro2.reviews.create!({
+  user_id: 3,
+  description: "Test",
+  rating: 2
+})
+
+pro1.reviews.create!({
+  user_id: 1,
+  description: "I hate it",
+  rating: 5
+})
+
+pro2.reviews.create!({
+  user_id: 2,
+  description: "I like iwviojoit so much!!!!",
+  rating: 1
+})
 
 puts "DONE!"
