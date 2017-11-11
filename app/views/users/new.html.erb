@@ -11,15 +11,30 @@
 
         <div class="form-group">
           <%= f.label :First_Name %>
-          <%= f.text_field :firstName, class: 'form-control' %>
+          <%= f.text_field :firstName, :required => true, class: 'form-control' %>
         </div>
       
-        First Name: <%= f.text_field :firstName %>
-        Last Name: <%= f.text_field :lastName %>
-        Email: <%= f.text_field :email %>
-        Password: <%= f.password_field :password %>
-        Password Confirmation: <%= f.password_field :password_confirmation %>
-        <%= f.submit "Submit" %>
+        <div class="form-group">
+          <%= f.label :Last_Name %>
+          <%= f.text_field :lastName, :required => true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Email %>
+          <%= f.text_field :email, :required => true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Password %>
+          <%= f.password_field :password, :required => true, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Password_Confirmation %>
+          <%= f.password_field :password_confirmation, :required => true, class: 'form-control' %>
+        </div>
+        
+        <%= f.submit "Create Account", class: 'btn btn-primary' %>
 
       <% end %>
     </div>
