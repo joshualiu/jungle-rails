@@ -43,8 +43,40 @@ test
       </thead>     
 
   </table>
-  <% @review.each do |a|%>
+  <% @reviews.each do |a|%>
     <%= "#{User.find(a.user_id).firstName} #{User.find(a.user_id).lastName} #{a.description} #{a.rating}" %><br>
     <%end %>
+
+
+  <div class="">
+    <h3>Write a Review</h3>
+      <%= form_for [@product, @review] do |form| %>
+
+        <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+          <strong>The following errors prevented saving:</strong>
+            <ul>
+              <% form.object.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+ 
+        <div class="form-group">
+          <%= form.label :Description %><br>
+          <%= form.text_area :description %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :Rating %>
+          <%= form.select :rating, options_for_select([1,2,3,4,5]), { include_blank: false }%>
+        </div>
+        
+        <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
+        
+      <% end %>
+  </div>
+    
 
 </section>
