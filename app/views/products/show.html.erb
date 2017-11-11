@@ -39,16 +39,34 @@ test
           <th>User</th>
           <th>Description</th>
           <th>Rating</th>
+          <th></th>
         </tr>
       </thead>     
+      <% @reviews.each do |a|%>
+        <tr>
+          <td>
+            <%= "#{User.find(a.user_id).firstName}, #{User.find(a.user_id).lastName}" %>
+          </td>
+          <td>
+            <%= a.description %>
+          </td>
+          <td>
+            <%= a.rating%>
+          </td>
+          <td>
+            <% if current_user && current_user == User.find(a.user_id)%>
+            <%= link_to fa_icon('trash'), product_review_path(a.product_id, a.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>            
+            <% end %>
+          </td>
+        </tr>
 
+      <%end %>
   </table>
-  <% @reviews.each do |a|%>
-    <%= "#{User.find(a.user_id).firstName} #{User.find(a.user_id).lastName} #{a.description} #{a.rating}" %><br>
-    <%end %>
+
 
 
   <div class="">
+  <% if current_user %>
     <h3>Write a Review</h3>
       <%= form_for [@product, @review] do |form| %>
 
@@ -76,6 +94,7 @@ test
         <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
         
       <% end %>
+    <% end %>
   </div>
     
 
