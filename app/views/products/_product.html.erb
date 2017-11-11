@@ -4,13 +4,17 @@
       <%= image_tag product.image.thumb, alt: product.name %>
       <h4><%= product.name %></h4>
     <% end %>
+    <strong>Average Rating:
+    <%= Review.where("product_id = ?", product.id).average(:rating) || "Not Rating"%></strong>
   </header>
   <p class="description">
     <%= product.description %>
   </p>
   <footer class="actions">
-    <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
+    <% if product.quantity > 0 %>
+  <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>
+      <% end %>
     <% end %>
     <%= link_to product, class: 'btn btn-default pull-right' do %>
       Details &raquo;

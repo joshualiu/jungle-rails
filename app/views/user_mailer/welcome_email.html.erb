@@ -9,23 +9,15 @@
 
       <% LineItem.where('order_id' => @user.id).each do |a| %>
 
-            
             <% if product = Product.find_by(id: a.product_id) %>
 
-            <td>
               <h4><%= product.name %></h4>
-            </td>
-            <td>
-              <%= product.price %>
-            </td>
-            <td>
-              <%= a.quantity %>
-            </td>
+              <h5><%= product.price %></h5>
+              <h5><%= a.quantity %></h5>
             <% end %>
 
       <% end %>
     </p>
-
     <p>Thanks for joining and have a great day!</p>
   </body>
 </html>
