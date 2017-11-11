@@ -6,7 +6,7 @@
 
 
   <% if cart.count < 1 %>
-    <p>Empty</p>
+    <p>Your shopping cart is empty!</p>
     <%= link_to "Home",root_path %>
   <% else %>
     <div class="panel panel-default items">
@@ -40,6 +40,7 @@
 
     <div class="row">
       <div class="col-xs-12">
+      
         <%= form_tag orders_path do %>
           <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
