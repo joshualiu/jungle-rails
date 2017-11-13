@@ -100,6 +100,17 @@ RSpec.describe User, type: :model do
       expect(@user.save).to be false
     end
 
+    it "should return false when a user's email format is not correct" do
+      @user = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "tescom",
+        password: '1',
+        password_confirmation: '1'
+      )
+      expect(@user.save).to be false
+    end
+
   end    
 
 end

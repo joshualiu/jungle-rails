@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }
   
+  validates :email, format: {with: /\w+@[a-zA-Z]+\.[a-zA-Z]{2,3}/}
+
 end
