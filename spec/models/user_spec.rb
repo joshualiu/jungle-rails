@@ -141,6 +141,32 @@ RSpec.describe User, type: :model do
       expect(@user).to be false
     end
 
+    it "should return true when a user's login form include some white spaces" do
+      @user1 = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "  joshy@email.com ",
+        password: '111111',
+        password_confirmation: '111111'
+      )
+
+      @user = User.authenticate_with_credentials("   joshy@email.com      ", "111111")
+      expect(@user).to be false
+    end
+
+    it "should return true when a user types in wrong case for their email" do
+      @user1 = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "joshy@email.COM",
+        password: '111111',
+        password_confirmation: '111111'
+      )
+
+      @user = User.authenticate_with_credentials("jOshy@EMAIL.com", "111111")
+      expect(@user).to be false
+    end
+
   end
 
 end
