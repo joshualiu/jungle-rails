@@ -111,6 +111,36 @@ RSpec.describe User, type: :model do
       expect(@user.save).to be false
     end
 
-  end    
+  end  
+  
+  describe '.authenticate_with_credentials' do
+
+    it "should return true when the authentication pass" do
+      @user1 = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "joshy@email.com",
+        password: '111111',
+        password_confirmation: '111111'
+      )
+
+      @user = User.authenticate_with_credentials("joshy@email.com", "111111")
+      expect(@user).to be true
+    end
+
+    it "should return false when the authentication fail" do
+      @user1 = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "joshy@email.com",
+        password: '111111',
+        password_confirmation: '111111'
+      )
+
+      @user = User.authenticate_with_credentials("joshy@email.com", "222222")
+      expect(@user).to be false
+    end
+
+  end
 
 end

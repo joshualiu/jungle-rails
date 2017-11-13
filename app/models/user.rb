@@ -9,4 +9,15 @@ class User < ActiveRecord::Base
   
   validates :email, format: {with: /\w+@[a-zA-Z]+\.[a-zA-Z]{2,3}/}
 
+  def self.authenticate_with_credentials(email, password)
+    user = User.find_by_email(email)
+
+    if user && user.authenticate(password)
+      true
+    else 
+      false
+    end
+
+  end
+  
 end
