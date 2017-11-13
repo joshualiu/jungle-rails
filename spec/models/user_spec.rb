@@ -88,6 +88,18 @@ RSpec.describe User, type: :model do
       )
       expect(@user.save).to be false
     end
+
+    it "should return false when a user's password is less than 6 letters" do
+      @user = User.create(
+        firstName: "Joshy",
+        lastName: "Liu",
+        email: "test@gmail.com",
+        password: '1',
+        password_confirmation: '1'
+      )
+      expect(@user.save).to be false
+    end
+
   end    
 
 end
